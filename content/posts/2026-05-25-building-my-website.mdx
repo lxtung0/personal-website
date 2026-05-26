@@ -1,0 +1,40 @@
+---
+title: "Building My Personal Website"
+date: "2026-05-25"
+excerpt: "Why I built this site with Next.js 15, what went into the design decisions, and the engineering I hid inside it for fun."
+tags: ["engineering", "design", "next.js"]
+published: true
+---
+
+Every developer eventually builds their own website. This is mine — and I want to explain the decisions behind it.
+
+## Why Next.js
+
+I wanted something that would work as both a polished personal site and a sandbox for engineering experiments. Next.js 15 with the App Router gives me static generation for the public-facing content, edge functions for dynamic features, and a familiar React mental model for building interactive experiments.
+
+The site ships as fully static HTML — fast, cacheable, and cheap to host. But under the hood there's more going on.
+
+## Design philosophy
+
+I spent a long time looking at sites I admire: Linear, Vercel, Stripe. What they have in common isn't a specific color palette or typeface — it's restraint. Every element earns its place.
+
+My design rules for this site:
+
+- **No color accent.** Neutral palette only. Sophistication through spacing and type, not color.
+- **Light mode.** Clean and approachable — important when the audience includes product people, not just engineers.
+- **Geist font.** Sharp, technical, not cold. Works equally well for headings and code.
+- **Subtle motion only.** Entrance animations under 400ms. Hover effects under 150ms. No parallax.
+
+## The hidden engineering
+
+The visible site is simple. The engineering underneath is intentionally overkill.
+
+Blog post view counts are tracked in Vercel KV (Redis), incremented via an Edge Route Handler with a sliding window rate limiter. This is a textbook distributed systems pattern running on real infrastructure — and it cost me nothing to set up.
+
+There are also easter eggs hidden in the site. I won't spoil them here.
+
+## What's next
+
+This site is meant to grow. Future experiments include WebSockets for real-time features, a WASM module, and maybe a CRDT-based collaborative feature hidden behind a secret route.
+
+For now: the foundation is solid, the design is clean, and the blog is live.
